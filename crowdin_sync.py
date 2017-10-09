@@ -110,15 +110,15 @@ def find_xml(base_path):
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Synchronising Cosmic-OS translations with Crowdin")
-    sync = parser.add_mutually_exclusive_group()
-    parser.add_argument('-u', '--username', help='Gerrit username',
-                        required=True)
+    parser.add_argument('-u', '--username', help='Git username')
     parser.add_argument('-b', '--branch', help='Branch',
                         required=True)
-    sync.add_argument('--no-upload', action='store_true',
-                      help='Only download translations from Crowdin')
-    sync.add_argument('--no-download', action='store_true',
-                      help='Only upload translations to Crowdin')
+    parser.add_argument('-us', '--upload-sources', action='store_true',
+                        help='Upload sources to Crowdin')
+    parser.add_argument('-ut', '--upload-translations', action='store_true',
+                        help='Upload translations to Crowdin')
+    parser.add_argument('-d', '--download', action='store_true',
+                        help='Download translations from Crowdin')
     return parser.parse_args()
 
 # ################################# PREPARE ################################## #
@@ -156,23 +156,23 @@ def check_files(branch):
 # ################################### MAIN ################################### #
 
 
-def upload_crowdin(branch, no_upload=False):
-    if no_upload:
-        print('Skipping source translations upload')
-        return
+def upload_sources_crowdin(branch):
 
-    print('\nUploading Crowdin source translations')
+    print('\nUploading sources to Crowdin')
     check_run(['crowdin-cli',
                '--config=%s/crowdin/crowdin_%s.yaml' % (_DIR, branch),
                'upload', 'sources', '--branch=%s' % branch])
 
+def upload_translations_crowdin(branch):
+    print('\nUploading translations to Crowdin ')
+    check_run(['crowdin-cli',
+                '--config=%s/crowdin/crowdin_%s.yaml' % (_DIR, branch),
+                'upload', 'translations', '--branch=%s' % branch,
+                '--no-import-duplicates', '--import-eq-suggestions',
+                '--auto-approve-imported'])
 
-def download_crowdin(base_path, branch, xml, username, no_download=False):
-    if no_download:
-        print('Skipping translations download')
-        return
-
-    print('\nDownloading Crowdin translations')
+def download_crowdin(base_path, branch, xml, username):
+    print('\nDownloading translations from Crowdin ')
     check_run(['crowdin-cli',
                '--config=%s/crowdin/crowdin_%s.yaml' % (_DIR, branch),
                'download', '--branch=%s' % branch])
@@ -285,10 +285,18 @@ def main():
 
     if not check_files(default_branch):
         sys.exit(1)
+    
+    if args.download and args.username is None:
+        print('Argument -u/--username is required for translations download')
+        sys.exit(1)
 
-    upload_crowdin(default_branch, args.no_upload)
-    download_crowdin(base_path, default_branch, (xml_android),
-                     args.username, args.no_download)
+    if args.upload_sources:
+        upload_sources_crowdin(default_branch)
+    if args.upload_translations:
+        upload_translations_crowdin(default_branch)
+    if args.download:
+        download_crowdin(base_path, default_branch, (xml_android),
+                         args.username)
     print('\nDone!')
 
 if __name__ == '__main__':

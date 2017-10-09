@@ -28,7 +28,7 @@ Base path should contain all Cosmic-OS trees in subfolders, named after Cosmic-O
 
 Execute:
 
-    ./crowdin_sync.py --username your_github_username --branch branch_name [--no-download|--no-upload]
+    ./crowdin_sync.py --username your_github_username --branch branch_name [--upload-sources] [--upload-translations] [--download]
 
 Bugs
 ----
