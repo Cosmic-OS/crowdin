@@ -164,7 +164,7 @@ def upload_crowdin(branch, no_upload=False):
     print('\nUploading Crowdin source translations')
     check_run(['crowdin-cli',
                '--config=%s/crowdin/crowdin_%s.yaml' % (_DIR, branch),
-               'upload', 'sources'])
+               'upload', 'sources', '--branch=%s' % branch])
 
 
 def download_crowdin(base_path, branch, xml, username, no_download=False):
@@ -175,7 +175,7 @@ def download_crowdin(base_path, branch, xml, username, no_download=False):
     print('\nDownloading Crowdin translations')
     check_run(['crowdin-cli',
                '--config=%s/crowdin/crowdin_%s.yaml' % (_DIR, branch),
-               'download', '--ignore-match'])
+               'download', '--branch=%s' % branch])
 
 
     print('\nRemoving useless empty translation files')
