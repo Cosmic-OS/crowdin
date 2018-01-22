@@ -24,8 +24,41 @@
 "files" : [
   {
     "source" : "/**/res/values/custom_strings.xml",
-    "translation" : "/%original_path%-%android_code%/%original_file_name%"
- },
+    "translation" : "/%original_path%-%android_code%/%original_file_name%",
+   "languages_mapping" : &anchor {
+      "android_code" : {
+        "ar" : "car",
+        "ar-EG" : "ar-rEG",
+        "ar-SA" : "ar-rSA",
+        "zh-CN" : "zh-rCN",
+        "zh-TW" : "zh-rTW",
+        "cs" : "cs",
+        "da" : "da",
+        "nl" : "nl",
+        "fr" : "fr",
+        "de" : "de",
+        "el" : "el",
+        "hi" : "hi",
+        "id" : "id",
+        "it" : "it",
+        "ja" : "ja",
+        "ko" : "ko",
+        "la-LA" : "la-rLA",
+        "fa" : "fa",
+        "pl" : "pl",
+        "pt-PT" : "pt-rPT",
+        "pt-BR" : "pt-rBR",
+        "ro" : "ro",
+        "ru" : "ru",
+        "es-ES" : "es-rES",
+        "es-MX" : "es-rMX",
+        "sv-SE" : "sv-rSE",
+        "tr" : "tr",
+        "uk" : "uk",
+      }
+    }
+  },
+
   {
     "source" : "/packages/apps/Galaxy/res/values/custom_strings.xml",
     "translation" : "/%original_path%-%android_code%/%original_file_name%"
