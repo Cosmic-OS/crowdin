@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"project_identifier": "Cosmic-OS"
+"project_identifier": "cosmic-os"
 "api_key_env": COSMIC_CROWDIN_API_KEY
 "base_path_env": COSMIC_CROWDIN_BASE_PATH
 "preserve_hierarchy": true
@@ -27,7 +27,7 @@
     "translation" : "/%original_path%-%android_code%/%original_file_name%",
    "languages_mapping" : &anchor {
       "android_code" : {
-        "ar" : "car",
+        "ar" : "ar",
         "ar-EG" : "ar-rEG",
         "ar-SA" : "ar-rSA",
         "zh-CN" : "zh-rCN",
@@ -50,9 +50,9 @@
         "pt-BR" : "pt-rBR",
         "ro" : "ro",
         "ru" : "ru",
-        "es-ES" : "es-rES",
+        "es-ES" : "es",
         "es-MX" : "es-rMX",
-        "sv-SE" : "sv-rSE",
+        "sv-SE" : "sv",
         "tr" : "tr",
         "uk" : "uk",
       }
