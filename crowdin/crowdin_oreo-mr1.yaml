@@ -1,0 +1,29 @@
+# crowdin_oreo-mr1.yaml
+#
+# Crowdin configuration file for Cosmic-OS
+#
+# Copyright (C) 2017 Cosmic-OS
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"project_identifier": "Cosmic-OS"
+"api_key_env": COSMIC_CROWDIN_API_KEY
+"base_path_env": COSMIC_CROWDIN_BASE_PATH
+"preserve_hierarchy": true
+
+"files" : [
+  {
+    "source" : "/**/res/values/custom_strings.xml",
+    "translation" : "/%original_path%-%android_code%/%original_file_name%"
+  }
+]
